@@ -12,10 +12,10 @@ public class BatchRepository {
 
     public int saveBatch(BatchDTO dto) {
         String sql = """
-                INSERT INTO batches 
+                INSERT INTO product_batches 
                 (product_id, batch_number, quantity, cost_price, selling_price,
-                 markup_percentage, is_expired, expire_date)
-                VALUES (?,?,?,?,?,?,?,?)
+                 markup_percentage, is_expired, expiry_date, user_id)
+                VALUES (?,?,?,?,?,?,?,?, 1)
                 """;
 
         return jdbcTemplate.update(sql,
@@ -32,7 +32,7 @@ public class BatchRepository {
 
     public int updateBatch(BatchDTO dto) {
         String sql = """
-                UPDATE batches SET
+                UPDATE product_batches SET
                 product_id=?,
                 batch_number=?,
                 quantity=?,
@@ -40,7 +40,8 @@ public class BatchRepository {
                 selling_price=?,
                 markup_percentage=?,
                 is_expired=?,
-                expire_date=?
+                expiry_date=?,
+                user_id=1
                 WHERE batch_id=?
                 """;
 
@@ -58,7 +59,7 @@ public class BatchRepository {
     }
 
     public int deleteBatch(int batchId) {
-        String sql = "UPDATE batches SET is_expired = 0 WHERE batch_id = ?";
+        String sql = "UPDATE product_batches SET status = 0 WHERE product_batch_id = ?";
         return jdbcTemplate.update(sql, batchId);
     }
 }

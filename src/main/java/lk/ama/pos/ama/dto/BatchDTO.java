@@ -10,13 +10,13 @@ import java.sql.Date;
 @NoArgsConstructor
 @Data
 public class BatchDTO {
-    private int batchId;
-    private int productId;
+    private Integer batchId;
+    private Integer productId;
     private String batchNumber;
-    private double quantity;
-    private double costPrice;
-    private double sellingPrice;
-    private double markupPercentage;
-    private int isExpired;
+    private Double quantity;
+    private Double costPrice;
+    private Double sellingPrice;
+    private Double markupPercentage;
+    private Integer isExpired;
     private Date expireDate;
 }
